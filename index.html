@@ -11,12 +11,16 @@
 	<header><h1>Hangman</h1></header>
 
 	<main>
-		<section id="new_word">
+		<section id="new-word">
 			<div>
 				<input type="password" name="word" id="word" placeholder="Enter Word" autofocus />
 				<img src="img/hideWord.png" id="hide" alt="hide" />
 			</div>
-			<button>Play</button>
+			<button id="play">Play</button>
+		</section>
+
+		<section id="hidden-word">
+			<div id="final-word"><span class="letter">w</span><span class="letter">o</span><span class="letter">r</span><span class="letter">d</span><span class="space"> </span><span class="letter">a</span></div>
 		</section>
 	</main>
 

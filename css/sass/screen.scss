@@ -58,7 +58,7 @@ main {
 	margin: 0 auto;
 	padding: 0 8px;
 
-	section#new_word {
+	section#new-word {
 		@extend .clearfix;
 
 		div {
@@ -131,6 +131,34 @@ main {
 
 			button {
 				margin-top: 5px;
+			}
+		}
+	}
+
+	section#hidden-word {
+		margin-top: 50px;
+
+		#final-word {
+			@extend .clearfix;
+			font-size: 28px;
+
+			span.letter {
+				float: left;
+				display: block;
+				font-weight: 300;
+				width: 30px;
+				margin: 0 5px;
+				padding: 0 10px;
+				text-align: center;
+				text-transform: uppercase;
+				border-bottom: 1px solid $default-color;
+			}
+
+			span.space {
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
 			}
 		}
 	}
