@@ -1,16 +1,3 @@
-function word(input, img) {
-	/*var text = input.value,
-		source = img.src.split('/');
-
-	source = source[source.length - 1];
-
-	if(source === "hideWord.png" && input.type !== "password") {
-		input.type = "password";
-	} else {
-		input.type = "text";
-	}*/
-}
-
 function showHide(input, img) {
 	var text = input.value,
 		source = img.src.split('/');
@@ -31,7 +18,6 @@ function showHide(input, img) {
 var input = document.getElementById('word'),
 	img	  = document.getElementById('hide');
 
-input.addEventListener('keyup', function() { word(input, img) }, false);
 img.addEventListener('mouseup', function() { showHide(input, img) }, false);
 
 // http://stackoverflow.com/a/4331028/986991
