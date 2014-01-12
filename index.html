@@ -13,14 +13,29 @@
 	<main>
 		<section id="new-word">
 			<div>
-				<input type="password" name="word" id="word" placeholder="Enter Word" autofocus />
+				<input type="password" id="word" placeholder="Enter Word" autofocus />
 				<img src="img/hideWord.png" id="hide" alt="hide" />
 			</div>
 			<button id="play">Play</button>
 		</section>
 
+		<section id="hang">
+			<canvas width="400" height="400" id="draw">Sorry, your browser does not support canvas.</canvas>
+
+			<aside id="letters">
+				<div id="user-guess">
+					<input type="text" id="guess" placeholder="Enter letter or word to guess" />
+					<button id="guess-submit">Check</button>
+				</div>
+
+				<div id="guesses">
+
+				</div>
+			</aside>
+		</section>
+
 		<section id="hidden-word">
-			<div id="final-word"><span class="letter">w</span><span class="letter">o</span><span class="letter">r</span><span class="letter">d</span><span class="space"> </span><span class="letter">a</span></div>
+			<div id="final-word"><div class="letter"><span class="single-letter">w</span></div><div class="letter"><span class="single-letter">o</span></div><div class="letter"><span class="single-letter">r</span></div><div class="letter"><span class="single-letter">d</span></div><div class="space"><span class="single-letter"> </span></div><div class="letter"><span class="single-letter">a</span></div></div>
 		</section>
 	</main>
 

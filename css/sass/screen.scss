@@ -52,6 +52,33 @@ header {
 	}
 }
 
+input, button {
+	margin: 0;
+	outline: none;
+	border-radius: 0;
+	-webkit-appearance: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+input {
+	border: 1px solid #CCC;
+
+	&:hover {
+		border-color: #AFAFAF;
+	}
+
+	&:focus, &:active {
+		border-color: #747474;
+	}
+}
+
+button {
+	cursor: pointer;
+}
+
 main {
 	display: block;
 	max-width: $width;
@@ -78,29 +105,12 @@ main {
 		}
 
 		input, button {
-			margin: 0;
 			padding: 10px 12px;
-			outline: none;
-			border-radius: 0;
-			-webkit-appearance: none;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			-ms-box-sizing: border-box;
-			box-sizing: border-box;
 		}
 
 		input {
 			width: 100%;
-			border: 1px solid #CCC;
 			padding-right: 46px;
-
-			&:hover {
-				border-color: #AFAFAF;
-			}
-
-			&:focus, &:active {
-				border-color: #747474;
-			}
 		}
 
 		button {
@@ -108,7 +118,6 @@ main {
 			width: 16%;
 			background: #00D800;
 			border: 1px solid #00B100;
-			cursor: pointer;
 
 			&:hover {
 				border-color: #009D00;
@@ -135,14 +144,74 @@ main {
 		}
 	}
 
-	section#hidden-word {
-		margin-top: 50px;
+	section#hang {
+		@extend .clearfix;
+		margin: 50px 0;
 
+		canvas#draw {
+			float: left;
+
+			@media (max-width: 400px) {
+				width: 200px;
+			}
+		}
+
+		aside#letters {
+			float: right;
+			max-width: 390px;
+			width: 390px;
+
+			#user-guess {
+				@extend .clearfix;
+
+				input {
+					float: left;
+					width: 80%;
+					padding: 5px 8px;
+				}
+
+				button {
+					float: right;
+					width: 19%;
+					background: #E7E7E7;
+					padding: 5px 10px;
+					border: 1px solid #CCC;
+
+					&:hover {
+						border-color: #AFAFAF;
+					}
+
+					&:focus {
+						border-color: #A5A5A5;
+					}
+
+					&:active {
+						background: #DDD;
+					}
+				}
+			}
+
+			#guesses {
+				@extend .clearfix;
+
+				>span {
+					float: left;
+					display: block;
+					color: #EB0000;
+					margin: 6px 2px;
+					padding: 3px 8px;
+					border: 1px solid #CCC;
+				}
+			}
+		}
+	}
+
+	section#hidden-word {
 		#final-word {
 			@extend .clearfix;
 			font-size: 28px;
 
-			span.letter {
+			div.letter {
 				float: left;
 				display: block;
 				font-weight: 300;
@@ -152,9 +221,17 @@ main {
 				text-align: center;
 				text-transform: uppercase;
 				border-bottom: 1px solid $default-color;
+
+				>span.single-letter {
+					visibility: hidden;
+
+					&.letter-show {
+						visibility: visible;
+					}
+				}
 			}
 
-			span.space {
+			div.space {
 				float: left;
 				display: block;
 				width: 50px;
