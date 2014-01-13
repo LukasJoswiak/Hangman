@@ -174,8 +174,24 @@ window.addEventListener('blur', function() {
 */
 
 if(canvas.getContext) {
-	var context = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 
+	ctx.beginPath();
+	ctx.moveTo(395.5, 395.5);
+	ctx.lineTo(0, 395.5);
+	ctx.lineTo(50.5, 345.5)
+	ctx.lineTo(100.5, 395.5);
+	ctx.moveTo(50.5, 395.5);
+	ctx.lineTo(50.5, 5.5);
+	ctx.lineTo(275.5, 5.5);
+	ctx.lineTo(275.5, 75.5);
+	ctx.moveTo(50.5, 55.5);
+	ctx.lineTo(100.5, 5.5);
+	ctx.lineWidth = 5;
+	ctx.strokeStyle = "#37352F";
+	ctx.stroke();
+
+	/*
 	var requestAnimationFrame =
 			window.requestAnimationFrame ||
 			window.webkitRequestAnimationFrame ||
@@ -196,13 +212,13 @@ if(canvas.getContext) {
 
 	var render = function() {
 		// clear the canvas
-		// context.clearRect(0, 0, canvas.width, canvas.height);
+		// ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		// draw the square
-		context.beginPath();
-		context.rect(square.x, square.y, square.width, square.height);
-		context.fillStyle = square.fill;
-		context.fill();
+		ctx.beginPath();
+		ctx.rect(square.x, square.y, square.width, square.height);
+		ctx.fillStyle = square.fill;
+		ctx.fill();
 
 		// redraw
 		requestAnimationFrame(render);
@@ -240,6 +256,7 @@ if(canvas.getContext) {
 	setTimeout(function() {
 		animate('y', 75, 1000);
 	}, 7500);
+	*/
 }
 
 // http://stackoverflow.com/a/4331028/986991
