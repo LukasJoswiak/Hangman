@@ -54,7 +54,8 @@ function guess(guessInput) {
 		game['incorrect'].push(guessValue);
 		guesses.innerHTML = guesses.innerHTML + '<span>' + guessValue + '</span>';
 
-		if(game['incorrect'].length >= 2) {
+		// max guesses
+		if(game['incorrect'].length >= 10) {
 			gameOver(0);
 		}
 	}
@@ -140,6 +141,23 @@ guessI.onkeydown = function(e) {
 	var code = e.keyCode || e.which;
 
 	if(code === 13) {
+		guess(guessI);
+	}
+};
+
+submit.onkeydown = function(e) {
+	var code = e.keyCode || e.which;
+
+	if(code === 32) {
+		play(input);
+		return false;
+	}
+};
+
+guessS.onkeydown = function(e) {
+	var code = e.keyCode || e.which;
+
+	if(code === 32) {
 		guess(guessI);
 	}
 };
