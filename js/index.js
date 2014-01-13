@@ -17,7 +17,9 @@ function showHide(input, img) {
 
 function play(input) {
 	var word 	  = input.value,
-		finalWord = document.getElementById('final-word');
+		finalWord = document.getElementById('final-word'),
+		guesses	  = document.getElementById('guesses'),
+		result 	  = document.getElementById('result');
 
 	finalWord.innerHTML = "";
 
@@ -26,31 +28,72 @@ function play(input) {
 		finalWord.innerHTML = finalWord.innerHTML + '<div class="' + className + '"><span class="single-letter">' + word[i] + '</span></div>';
 	}
 
+	game['correct'] = [];
+	game['incorrect'] = [];
+	guesses.innerHTML = "";
+	result.style.display = 'none';
 	cursorEnd(document.getElementById('guess'));
 	playWord = word;
 }
 
 function guess(guessInput) {
-	var guessValue = guessInput.value,
+	if(playWord === null) return;
+	var guessValue = guessInput.value.toLowerCase(),
 		guesses = document.getElementById('guesses');
 
 	var letters 	 = document.getElementsByClassName('single-letter'),
 		guessCorrect = false;
+
+	guessCorrect = showResult(guessValue, letters, guessCorrect, " letter-show", false);
+
+	if(game['correct'].length === playWord.length) {
+		gameOver(1);
+	}
+
+	if(guessCorrect === false && game['incorrect'].indexOf(guessValue) === -1) {
+		game['incorrect'].push(guessValue);
+		guesses.innerHTML = guesses.innerHTML + '<span>' + guessValue + '</span>';
+
+		if(game['incorrect'].length >= 2) {
+			gameOver(0);
+		}
+	}
+
+	guessInput.value = "";
+}
+
+function showResult(guessValue, letters, guessCorrect, classAdd, over) {
 	for(var i = 0, len = letters.length; i < len; i++) {
-		if(guessValue === letters[i].innerHTML || guessValue === playWord) {
+		if(guessValue === letters[i].innerHTML || guessValue === playWord || over) {
 			guessCorrect = true;
-			if(letters[i].className.split(' ').length === 1) {
+			if(over || letters[i].className.split(' ').length === 1) {
 				game['correct'].push(letters[i].innerHTML);
-				letters[i].className = letters[i].className + " letter-show";
+				letters[i].className = letters[i].className + classAdd;
 			}
 		}
 	}
 
-	if(guessCorrect === false) {
-		guesses.innerHTML = guesses.innerHTML + '<span>' + guessValue + '</span>';
+	return guessCorrect;
+}
+
+function gameOver(outcome) {
+	var result = document.getElementById('result');
+
+	if(outcome === 0) {
+		result.className = "loser";
+		result.innerHTML = "You lose :(";
+
+		showResult(null, document.getElementsByClassName('single-letter'), false, " loser", true);
+
+	} else {
+		result.className = "";
+		result.innerHTML = "Winner!";
 	}
 
-	guessInput.value = "";
+	playWord = null;
+	result.style.display = "block";
+	input.value = "";
+	input.focus();
 }
 
 var input 	= document.getElementById('word'),
@@ -100,6 +143,17 @@ guessI.onkeydown = function(e) {
 		guess(guessI);
 	}
 };
+
+/*
+var focused = true;
+window.addEventListener('focus', function() {
+	focused = true;
+});
+
+window.addEventListener('blur', function() {
+	focused = false;
+});
+*/
 
 if(canvas.getContext) {
 	var context = canvas.getContext('2d');
@@ -166,7 +220,7 @@ if(canvas.getContext) {
 		animate('x', 195, 2500);
 	}, 5000);
 	setTimeout(function() {
-		animate('y', 100, 1000);
+		animate('y', 75, 1000);
 	}, 7500);
 }
 

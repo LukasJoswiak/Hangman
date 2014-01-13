@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700);
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700);
 
 $font: "Open Sans", sans-serif;
 $header-font: "Open Sans", sans-serif;
@@ -198,6 +198,7 @@ main {
 					float: left;
 					display: block;
 					color: #EB0000;
+					text-transform: uppercase;
 					margin: 6px 2px;
 					padding: 3px 8px;
 					border: 1px solid #CCC;
@@ -207,13 +208,13 @@ main {
 	}
 
 	section#hidden-word {
+		text-align: center;
+
 		#final-word {
-			@extend .clearfix;
 			font-size: 28px;
 
 			div.letter {
-				float: left;
-				display: block;
+				display: inline-block;
 				font-weight: 300;
 				width: 30px;
 				margin: 0 5px;
@@ -225,17 +226,31 @@ main {
 				>span.single-letter {
 					visibility: hidden;
 
-					&.letter-show {
+					&.letter-show, &.loser {
 						visibility: visible;
+					}
+
+					&.loser {
+						color: #EB0000;
 					}
 				}
 			}
 
 			div.space {
-				float: left;
-				display: block;
+				display: inline-block;
 				width: 50px;
 				height: 50px;
+			}
+		}
+
+		#result {
+			display: none;
+			font-size: 26px;
+			color: #00B300;
+			margin-top: 30px;
+
+			&.loser {
+				color: #EB0000;
 			}
 		}
 	}
