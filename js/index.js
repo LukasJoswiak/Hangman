@@ -51,11 +51,12 @@ function guess(guessInput) {
 	}
 
 	if(guessCorrect === false && game['incorrect'].indexOf(guessValue) === -1) {
+		body(game['incorrect'].length);
 		game['incorrect'].push(guessValue);
 		guesses.innerHTML = guesses.innerHTML + '<span>' + guessValue + '</span>';
 
 		// max guesses
-		if(game['incorrect'].length >= 10) {
+		if(game['incorrect'].length >= 6) {
 			gameOver(0);
 		}
 	}
@@ -173,22 +174,62 @@ window.addEventListener('blur', function() {
 });
 */
 
+var styles = {
+	'width': 5,
+	'color': '#37352F'
+}
+
+function body(part) {
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath();
+
+	if(part === 0) {
+		// head
+		ctx.moveTo(300.5, 100.5);
+		ctx.arc(275.5, 100.5, 25.5, 0, Math.PI * 2, true);
+	} else if(part === 1) {
+		// torso
+		ctx.moveTo(275.5, 125.5);
+		ctx.lineTo(275.5, 225.5);
+	} else if(part === 2) {
+		// left leg
+		ctx.moveTo(276.5, 223.5);
+		ctx.lineTo(251.5, 248.5);
+	} else if(part === 3) {
+		// right leg
+		ctx.moveTo(274.5, 223.5);
+		ctx.lineTo(299.5, 248.5);
+	} else if(part === 4) {
+		// left arm
+		ctx.moveTo(275.5, 150.5);
+		ctx.lineTo(240.5, 160.5);
+	} else if(part === 5) {
+		// right arm
+		ctx.moveTo(275.5, 150.5);
+		ctx.lineTo(310.5, 160.5);
+	}
+
+	ctx.lineWidth = styles['width'];
+	ctx.strokeStyle = styles['color'];
+	ctx.stroke();
+}
+
 if(canvas.getContext) {
 	var ctx = canvas.getContext('2d');
 
 	ctx.beginPath();
-	ctx.moveTo(395.5, 395.5);
-	ctx.lineTo(0, 395.5);
-	ctx.lineTo(50.5, 345.5)
-	ctx.lineTo(100.5, 395.5);
-	ctx.moveTo(50.5, 395.5);
+	ctx.moveTo(345.5, 345.5);
+	ctx.lineTo(0, 345.5);
+	ctx.lineTo(50.5, 295.5)
+	ctx.lineTo(100.5, 345.5);
+	ctx.moveTo(50.5, 345.5);
 	ctx.lineTo(50.5, 5.5);
 	ctx.lineTo(275.5, 5.5);
 	ctx.lineTo(275.5, 75.5);
 	ctx.moveTo(50.5, 55.5);
 	ctx.lineTo(100.5, 5.5);
-	ctx.lineWidth = 5;
-	ctx.strokeStyle = "#37352F";
+	ctx.lineWidth = styles['width'];
+	ctx.strokeStyle = styles['color'];
 	ctx.stroke();
 
 	/*
