@@ -32,6 +32,7 @@ function play(input) {
 	game['incorrect'] = [];
 	guesses.innerHTML = "";
 	result.style.display = 'none';
+	clearHangman();
 	cursorEnd(document.getElementById('guess'));
 	playWord = word;
 }
@@ -179,26 +180,31 @@ var styles = {
 	'color': '#37352F'
 }
 
+function clearHangman() {
+	var ctx = canvas.getContext('2d');
+	ctx.clearRect(240.5, 75.5, 70, 200);
+}
+
 function body(part) {
 	var ctx = canvas.getContext('2d');
 	ctx.beginPath();
 
 	if(part === 0) {
 		// head
-		ctx.moveTo(300.5, 100.5);
-		ctx.arc(275.5, 100.5, 25.5, 0, Math.PI * 2, true);
+		ctx.moveTo(300.5, 103);
+		ctx.arc(275.5, 103, 25.5, 0, Math.PI * 2, true);
 	} else if(part === 1) {
 		// torso
-		ctx.moveTo(275.5, 125.5);
-		ctx.lineTo(275.5, 225.5);
+		ctx.moveTo(275.5, 128.5);
+		ctx.lineTo(275.5, 228.5);
 	} else if(part === 2) {
 		// left leg
-		ctx.moveTo(276.5, 223.5);
-		ctx.lineTo(251.5, 248.5);
+		ctx.moveTo(276.5, 226.5);
+		ctx.lineTo(251.5, 251.5);
 	} else if(part === 3) {
 		// right leg
-		ctx.moveTo(274.5, 223.5);
-		ctx.lineTo(299.5, 248.5);
+		ctx.moveTo(274.5, 226.5);
+		ctx.lineTo(299.5, 251.5);
 	} else if(part === 4) {
 		// left arm
 		ctx.moveTo(275.5, 150.5);
