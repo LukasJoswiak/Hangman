@@ -57,7 +57,7 @@ function guess(guessInput) {
 		guesses.innerHTML = guesses.innerHTML + '<span>' + guessValue + '</span>';
 
 		// max guesses
-		if(game['incorrect'].length >= 6) {
+		if(game['incorrect'].length >= 9) {
 			gameOver(0);
 		}
 	}
@@ -189,6 +189,8 @@ function body(part) {
 	var ctx = canvas.getContext('2d');
 	ctx.beginPath();
 
+	var strength = styles['width'];
+
 	if(part === 0) {
 		// head
 		ctx.moveTo(300.5, 103);
@@ -213,9 +215,19 @@ function body(part) {
 		// right arm
 		ctx.moveTo(275.5, 150.5);
 		ctx.lineTo(310.5, 160.5);
+	} else if(part === 6) {
+		// left eye
+		ctx.arc(267.5, 96.5, 2, 0, Math.PI * 2, true);
+		strength = 3;
+	} else if(part === 7) {
+		ctx.arc(283.5, 96.5, 2, 0, Math.PI * 2, true);
+		strength = 3;
+	} else if(part === 8) {
+		ctx.arc(275.5, 109.5, 10, 0, Math.PI, false);
+		strength = 3;
 	}
 
-	ctx.lineWidth = styles['width'];
+	ctx.lineWidth = strength;
 	ctx.strokeStyle = styles['color'];
 	ctx.stroke();
 }
@@ -237,6 +249,16 @@ if(canvas.getContext) {
 	ctx.lineWidth = styles['width'];
 	ctx.strokeStyle = styles['color'];
 	ctx.stroke();
+
+	body(0);
+	body(1);
+	body(2);
+	body(3);
+	body(4);
+	body(5);
+	body(6);
+	body(7);
+	body(8);
 
 	/*
 	var requestAnimationFrame =
